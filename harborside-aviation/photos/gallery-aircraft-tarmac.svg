@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="60%" stop-color="#075985"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+    <linearGradient id="tarmac" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="600" fill="url(#sky)"/>
+
+  <!-- Clouds -->
+  <g fill="white" opacity="0.08">
+    <ellipse cx="150" cy="120" rx="120" ry="35"/>
+    <ellipse cx="220" cy="110" rx="80" ry="28"/>
+    <ellipse cx="600" cy="90" rx="140" ry="40"/>
+    <ellipse cx="680" cy="80" rx="90" ry="30"/>
+  </g>
+
+  <!-- Horizon -->
+  <rect x="0" y="340" width="800" height="8" fill="#0f2444" opacity="0.5"/>
+
+  <!-- Tarmac -->
+  <rect x="0" y="340" width="800" height="260" fill="url(#tarmac)"/>
+
+  <!-- Tarmac markings -->
+  <g stroke="#fbbf24" stroke-width="2" opacity="0.3">
+    <line x1="0" y1="420" x2="800" y2="420"/>
+    <line x1="0" y1="500" x2="800" y2="500"/>
+  </g>
+  <g fill="#fbbf24" opacity="0.2">
+    <rect x="180" y="380" width="30" height="8"/>
+    <rect x="240" y="380" width="30" height="8"/>
+    <rect x="300" y="380" width="30" height="8"/>
+    <rect x="360" y="380" width="30" height="8"/>
+    <rect x="420" y="380" width="30" height="8"/>
+    <rect x="480" y="380" width="30" height="8"/>
+    <rect x="540" y="380" width="30" height="8"/>
+  </g>
+
+  <!-- Taxiway line -->
+  <line x1="0" y1="440" x2="800" y2="440" stroke="#38bdf8" stroke-width="2" opacity="0.15" stroke-dasharray="20,15"/>
+
+  <!-- Aircraft on tarmac - Cessna 172 style -->
+  <g transform="translate(350, 260)">
+    <!-- Shadow -->
+    <ellipse cx="0" cy="80" rx="160" ry="18" fill="#000" opacity="0.3"/>
+
+    <!-- Fuselage -->
+    <path d="M-140,10 C-120,-5 -60,-12 0,-10 C60,-8 110,-2 145,8 C120,16 60,18 0,16 C-60,14 -120,12 -140,10Z" fill="#1e3a5f"/>
+    <!-- Nose cone -->
+    <ellipse cx="148" cy="11" rx="18" ry="10" fill="#0f2444"/>
+
+    <!-- Vertical tail -->
+    <path d="M-130,10 L-150,-45 L-105,8Z" fill="#0f2444" stroke="#38bdf8" stroke-width="1"/>
+    <!-- Horizontal tail left -->
+    <path d="M-125,12 L-165,36 L-120,14Z" fill="#0f2444" stroke="#38bdf8" stroke-width="1"/>
+    <!-- Horizontal tail right -->
+    <path d="M-125,8 L-165,-18 L-120,6Z" fill="#0f2444" stroke="#38bdf8" stroke-width="1"/>
+
+    <!-- Main wings -->
+    <path d="M-10,-9 L-45,-70 L55,-68 L70,-9Z" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1.5"/>
+    <path d="M-10,12 L-45,55 L55,53 L70,12Z" fill="#0c4a6e" stroke="#38bdf8" stroke-width="1.5"/>
+
+    <!-- Windows -->
+    <ellipse cx="50" cy="-2" rx="11" ry="7" fill="#38bdf8" opacity="0.35"/>
+    <ellipse cx="78" cy="0" rx="11" ry="7" fill="#38bdf8" opacity="0.35"/>
+    <ellipse cx="106" cy="3" rx="11" ry="7" fill="#38bdf8" opacity="0.35"/>
+
+    <!-- Prop disk -->
+    <ellipse cx="155" cy="11" rx="6" ry="28" fill="#94a3b8" opacity="0.2"/>
+
+    <!-- Wheels/gear -->
+    <g fill="#0f172a" stroke="#38bdf8" stroke-width="1" opacity="0.8">
+      <circle cx="30" cy="72" r="10"/>
+      <circle cx="-30" cy="72" r="10"/>
+      <circle cx="135" cy="18" r="6"/>
+    </g>
+    <!-- Gear struts -->
+    <line x1="30" y1="16" x2="30" y2="62" stroke="#38bdf8" stroke-width="2" opacity="0.5"/>
+    <line x1="-30" y1="16" x2="-30" y2="62" stroke="#38bdf8" stroke-width="2" opacity="0.5"/>
+
+    <!-- N-number on fuselage -->
+    <text x="-40" y="8" font-family="monospace" font-size="10" fill="#94a3b8" opacity="0.7" font-weight="600">N172PF</text>
+  </g>
+
+  <!-- Hangar in background -->
+  <g transform="translate(580, 200)" opacity="0.4">
+    <rect x="0" y="0" width="180" height="130" fill="#0f2444"/>
+    <rect x="0" y="-15" width="180" height="20" fill="#1e3a5f"/>
+    <!-- Hangar door -->
+    <rect x="40" y="50" width="100" height="80" fill="#091a33"/>
+    <line x1="90" y1="50" x2="90" y2="130" stroke="#38bdf8" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- FBO building -->
+  <g transform="translate(30, 220)" opacity="0.4">
+    <rect x="0" y="0" width="120" height="110" fill="#0f2444"/>
+    <rect x="0" y="-12" width="120" height="18" fill="#1e3a5f"/>
+    <rect x="20" y="40" width="30" height="40" fill="#0284c7" opacity="0.3"/>
+    <rect x="70" y="40" width="30" height="40" fill="#0284c7" opacity="0.3"/>
+    <text x="10" y="30" font-family="monospace" font-size="9" fill="#38bdf8" opacity="0.6">POMPANO FT</text>
+  </g>
+
+  <!-- Label -->
+  <text x="30" y="570" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#94a3b8" opacity="0.7" letter-spacing="3">AIRCRAFT ON TARMAC · KPMP</text>
+</svg>

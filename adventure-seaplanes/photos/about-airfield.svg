@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#050d1a"/>
+      <stop offset="50%" stop-color="#0c4a6e"/>
+      <stop offset="100%" stop-color="#075985"/>
+    </linearGradient>
+    <linearGradient id="runway" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2f1a"/>
+      <stop offset="100%" stop-color="#0f1f0f"/>
+    </linearGradient>
+    <radialGradient id="sunSet" cx="80%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0c4a6e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky with sunset glow -->
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <rect width="800" height="600" fill="url(#sunSet)"/>
+
+  <!-- Low clouds on horizon -->
+  <g fill="#94a3b8" opacity="0.06">
+    <ellipse cx="150" cy="280" rx="160" ry="40"/>
+    <ellipse cx="680" cy="260" rx="180" ry="45"/>
+    <ellipse cx="400" cy="295" rx="120" ry="30"/>
+  </g>
+
+  <!-- Grass areas -->
+  <rect x="0" y="300" width="200" height="300" fill="url(#grass)"/>
+  <rect x="600" y="300" width="200" height="300" fill="url(#grass)"/>
+
+  <!-- Main runway perspective -->
+  <!-- Runway surface -->
+  <path d="M280,600 L320,300 L480,300 L520,600Z" fill="url(#runway)"/>
+
+  <!-- Runway edge lights (left side) -->
+  <g fill="#38bdf8" opacity="0.7">
+    <circle cx="320" cy="305" r="3"/>
+    <circle cx="316" cy="340" r="3"/>
+    <circle cx="312" cy="380" r="3"/>
+    <circle cx="308" cy="425" r="3"/>
+    <circle cx="303" cy="475" r="3"/>
+    <circle cx="296" cy="535" r="3"/>
+  </g>
+  <!-- Runway edge lights (right side) -->
+  <g fill="#38bdf8" opacity="0.7">
+    <circle cx="480" cy="305" r="3"/>
+    <circle cx="484" cy="340" r="3"/>
+    <circle cx="488" cy="380" r="3"/>
+    <circle cx="492" cy="425" r="3"/>
+    <circle cx="497" cy="475" r="3"/>
+    <circle cx="504" cy="535" r="3"/>
+  </g>
+
+  <!-- Threshold lights (orange/red at end) -->
+  <g fill="#fbbf24" opacity="0.8">
+    <circle cx="330" cy="295" r="4"/>
+    <circle cx="355" cy="293" r="4"/>
+    <circle cx="380" cy="292" r="4"/>
+    <circle cx="405" cy="292" r="4"/>
+    <circle cx="430" cy="292" r="4"/>
+    <circle cx="455" cy="293" r="4"/>
+    <circle cx="475" cy="295" r="4"/>
+  </g>
+
+  <!-- Centerline markings -->
+  <g fill="#fbbf24" opacity="0.4">
+    <path d="M396,315 L404,315 L406,340 L394,340Z"/>
+    <path d="M393,360 L407,360 L410,390 L390,390Z"/>
+    <path d="M390,415 L410,415 L413,450 L387,450Z"/>
+    <path d="M386,475 L414,475 L418,520 L382,520Z"/>
+    <path d="M381,545 L419,545 L424,590 L376,590Z"/>
+  </g>
+
+  <!-- Piano keys threshold marking -->
+  <g fill="#e2e8f0" opacity="0.25">
+    <path d="M332,298 L342,298 L342,320 L328,320Z"/>
+    <path d="M350,297 L360,297 L358,319 L346,319Z"/>
+    <path d="M368,296 L378,296 L375,318 L363,318Z"/>
+    <path d="M386,296 L396,296 L392,318 L380,318Z"/>
+    <path d="M404,296 L414,296 L410,318 L398,318Z"/>
+    <path d="M422,296 L432,296 L428,318 L416,318Z"/>
+    <path d="M440,296 L450,296 L446,318 L434,318Z"/>
+    <path x="M458,297 L468,297 L464,319 L452,319Z"/>
+  </g>
+
+  <!-- Runway number "10" at near end -->
+  <text x="400" y="570" font-family="monospace" font-size="38" fill="#e2e8f0" text-anchor="middle" opacity="0.3" font-weight="bold">10</text>
+
+  <!-- PAPI lights (precision approach path indicator) -->
+  <g transform="translate(280, 390)">
+    <circle cx="-15" cy="0" r="6" fill="#ef4444" opacity="0.7"/>
+    <circle cx="0" cy="0" r="6" fill="#ef4444" opacity="0.7"/>
+    <circle cx="15" cy="0" r="6" fill="#fbbf24" opacity="0.3"/>
+    <circle cx="30" cy="0" r="6" fill="#fbbf24" opacity="0.3"/>
+  </g>
+
+  <!-- Runway shoulder / grass edges -->
+  <path d="M0,300 L280,300 L320,600 L0,600Z" fill="url(#grass)"/>
+  <path d="M800,300 L520,300 L480,600 L800,600Z" fill="url(#grass)"/>
+
+  <!-- Taxiway connecting -->
+  <path d="M480,450 L600,450 L610,600 L520,600Z" fill="#1e293b" opacity="0.5"/>
+  <!-- Taxiway centerline -->
+  <path d="M490,450 L595,450 L600,600" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity="0.2" stroke-dasharray="15,10"/>
+
+  <!-- Approach lighting in distance -->
+  <g opacity="0.4">
+    <line x1="380" y1="270" x2="380" y2="295" stroke="#fbbf24" stroke-width="2"/>
+    <line x1="390" y1="268" x2="390" y2="293" stroke="#fbbf24" stroke-width="2"/>
+    <line x1="400" y1="267" x2="400" y2="292" stroke="#fbbf24" stroke-width="2"/>
+    <line x1="410" y1="268" x2="410" y2="293" stroke="#fbbf24" stroke-width="2"/>
+    <line x1="420" y1="270" x2="420" y2="295" stroke="#fbbf24" stroke-width="2"/>
+  </g>
+
+  <!-- Wind direction indicator on side -->
+  <g transform="translate(90, 400)">
+    <line x1="0" y1="-50" x2="0" y2="50" stroke="#94a3b8" stroke-width="2" opacity="0.4"/>
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="#94a3b8" stroke-width="2" opacity="0.4"/>
+    <!-- Wind arrow -->
+    <path d="M0,-50 L10,-20 L0,-30 L-10,-20Z" fill="#38bdf8" opacity="0.5"/>
+    <text x="0" y="65" font-family="monospace" font-size="10" fill="#38bdf8" text-anchor="middle" opacity="0.5">090° 12KT</text>
+  </g>
+
+  <!-- Inset: Airport info box -->
+  <rect x="590" y="320" width="185" height="100" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1" opacity="0.85"/>
+  <text x="682" y="342" font-family="monospace" font-size="13" fill="#fbbf24" text-anchor="middle" font-weight="bold" opacity="0.9">KPMP</text>
+  <text x="682" y="360" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle" opacity="0.7">Pompano Beach Airpark</text>
+  <text x="682" y="378" font-family="monospace" font-size="9" fill="#38bdf8" text-anchor="middle" opacity="0.7">RWY 10/28 · 3,500 ft</text>
+  <text x="682" y="396" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle" opacity="0.6">ELEV 19 ft MSL</text>
+  <text x="682" y="412" font-family="monospace" font-size="9" fill="#94a3b8" text-anchor="middle" opacity="0.6">26°14'N  80°06'W</text>
+
+  <!-- Label -->
+  <text x="30" y="575" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#94a3b8" opacity="0.7" letter-spacing="3">RUNWAY 10 · KPMP AIRFIELD</text>
+</svg>

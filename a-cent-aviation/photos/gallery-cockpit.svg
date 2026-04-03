@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="outside" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c4a6e"/>
+      <stop offset="60%" stop-color="#075985"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="gaugeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outside view through windshield -->
+  <rect width="800" height="600" fill="url(#outside)"/>
+
+  <!-- Horizon line outside -->
+  <line x1="0" y1="200" x2="800" y2="200" stroke="#38bdf8" stroke-width="1" opacity="0.3"/>
+
+  <!-- Clouds outside -->
+  <g fill="white" opacity="0.08">
+    <ellipse cx="200" cy="140" rx="120" ry="30"/>
+    <ellipse cx="600" cy="120" rx="150" ry="35"/>
+    <ellipse cx="400" cy="160" rx="100" ry="25"/>
+  </g>
+
+  <!-- Airfield below (aerial view) -->
+  <g opacity="0.3">
+    <rect x="250" y="270" width="80" height="280" fill="#1e293b"/>
+    <rect x="360" y="320" width="200" height="40" fill="#1e293b" transform="rotate(-15 360 320)"/>
+  </g>
+
+  <!-- Windshield frame -->
+  <path d="M0,0 L0,350 L120,250 L200,220 L600,220 L680,250 L800,350 L800,0Z" fill="#0f172a" opacity="0.85"/>
+  <!-- Center post -->
+  <rect x="390" y="0" width="20" height="230" fill="#0f172a"/>
+  <!-- Windshield glass tint -->
+  <path d="M120,0 L120,250 L200,220 L390,215 L390,0Z" fill="#0284c7" opacity="0.06"/>
+  <path d="M680,0 L680,250 L600,220 L410,215 L410,0Z" fill="#0284c7" opacity="0.06"/>
+
+  <!-- Dashboard -->
+  <rect x="0" y="350" width="800" height="250" fill="url(#panel)"/>
+  <path d="M0,350 Q400,320 800,350" fill="url(#panel)" stroke="#38bdf8" stroke-width="1" opacity="0.3"/>
+
+  <!-- Instrument panel gauges -->
+  <!-- Airspeed indicator -->
+  <g transform="translate(140, 430)">
+    <circle r="45" fill="url(#gaugeGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <circle r="38" fill="none" stroke="#94a3b8" stroke-width="0.5" opacity="0.3"/>
+    <!-- Needle -->
+    <line x1="0" y1="0" x2="18" y2="-28" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+    <circle r="4" fill="#38bdf8"/>
+    <!-- Markings -->
+    <g stroke="#94a3b8" stroke-width="1" opacity="0.5">
+      <line x1="0" y1="-38" x2="0" y2="-28"/>
+      <line x1="27" y1="-27" x2="22" y2="-18"/>
+      <line x1="-27" y1="-27" x2="-22" y2="-18"/>
+    </g>
+    <text y="28" font-family="monospace" font-size="8" fill="#94a3b8" text-anchor="middle" opacity="0.7">KIAS</text>
+    <text y="-10" font-family="monospace" font-size="9" fill="#38bdf8" text-anchor="middle" font-weight="bold">85</text>
+  </g>
+
+  <!-- Attitude indicator -->
+  <g transform="translate(280, 420)">
+    <circle r="50" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <!-- Sky/ground split -->
+    <path d="M-50,5 Q0,-5 50,5 L50,50 L-50,50Z" fill="#0f2444"/>
+    <path d="M-50,5 Q0,-5 50,5 L50,-50 L-50,-50Z" fill="#075985"/>
+    <!-- Horizon line -->
+    <line x1="-40" y1="5" x2="40" y2="5" stroke="white" stroke-width="1.5" opacity="0.7"/>
+    <!-- Wing marks -->
+    <line x1="-40" y1="8" x2="-20" y2="8" stroke="#fbbf24" stroke-width="2.5"/>
+    <line x1="20" y1="8" x2="40" y2="8" stroke="#fbbf24" stroke-width="2.5"/>
+    <circle cx="0" cy="8" r="3" fill="#fbbf24"/>
+    <circle r="50" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+    <text y="62" font-family="monospace" font-size="8" fill="#94a3b8" text-anchor="middle" opacity="0.7">ATT</text>
+  </g>
+
+  <!-- Altimeter -->
+  <g transform="translate(420, 430)">
+    <circle r="45" fill="url(#gaugeGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="-8" y2="-35" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="22" y2="-18" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round"/>
+    <circle r="4" fill="#38bdf8"/>
+    <text y="28" font-family="monospace" font-size="8" fill="#94a3b8" text-anchor="middle" opacity="0.7">ALT</text>
+    <text y="-10" font-family="monospace" font-size="9" fill="#38bdf8" text-anchor="middle" font-weight="bold">3500</text>
+  </g>
+
+  <!-- VSI -->
+  <g transform="translate(555, 430)">
+    <circle r="40" fill="url(#gaugeGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="5" y2="-32" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+    <circle r="3" fill="#38bdf8"/>
+    <text y="26" font-family="monospace" font-size="7" fill="#94a3b8" text-anchor="middle" opacity="0.7">VSI</text>
+  </g>
+
+  <!-- RPM gauge -->
+  <g transform="translate(670, 430)">
+    <circle r="40" fill="url(#gaugeGrad)" stroke="#38bdf8" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="20" y2="-30" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
+    <circle r="3" fill="#38bdf8"/>
+    <text y="26" font-family="monospace" font-size="7" fill="#94a3b8" text-anchor="middle" opacity="0.7">RPM</text>
+    <text y="-8" font-family="monospace" font-size="8" fill="#38bdf8" text-anchor="middle">2350</text>
+  </g>
+
+  <!-- Radio stack -->
+  <g transform="translate(350, 520)">
+    <rect x="-60" y="-25" width="120" height="22" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="0.5" opacity="0.8"/>
+    <text x="-45" y="-10" font-family="monospace" font-size="10" fill="#38bdf8" font-weight="bold">122.800</text>
+    <rect x="-60" y="0" width="120" height="22" rx="3" fill="#0f172a" stroke="#38bdf8" stroke-width="0.5" opacity="0.8"/>
+    <text x="-45" y="15" font-family="monospace" font-size="10" fill="#38bdf8" font-weight="bold">119.700</text>
+  </g>
+
+  <!-- Yoke/control column -->
+  <g transform="translate(280, 580)">
+    <circle r="15" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <line x1="0" y1="-15" x2="0" y2="-50" stroke="#1e293b" stroke-width="8"/>
+  </g>
+  <g transform="translate(520, 580)">
+    <circle r="15" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <line x1="0" y1="-15" x2="0" y2="-50" stroke="#1e293b" stroke-width="8"/>
+  </g>
+
+  <!-- Label -->
+  <text x="30" y="575" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#94a3b8" opacity="0.6" letter-spacing="3">COCKPIT VIEW · FL035</text>
+</svg>
