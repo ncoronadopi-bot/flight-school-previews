@@ -137,11 +137,11 @@ p { margin: 0; }
 .story .grid { align-items: start; }
 .story__steps { grid-column: 1 / span 5; }
 .story__steps .h2 { margin-bottom: clamp(40px, 6vw, 96px); }
-.step { min-height: 62vh; padding-bottom: 48px; transition: opacity .3s ease; }
+.step { min-height: min(62vh, 560px); padding-bottom: 48px; transition: opacity .3s ease; }
 .step:last-child { min-height: 0; padding-bottom: 0; }
 .step h3 { font-size: var(--step-lead); line-height: 1.2; letter-spacing: -0.01em; }
 .step p { margin-top: 16px; max-width: 30em; color: var(--on-navy-soft); }
-.js .step:not(.is-active) { opacity: .45; }
+.js .step:not(.is-active) { opacity: .5; }
 .story__pin { grid-column: 7 / span 6; position: sticky; top: 14vh; }
 .pbc { background: var(--paper); color: var(--ink); border-radius: 6px; overflow: hidden; } /* taste-skill-ignore: interface fragment / scallop mask */
 .pbc__head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: interface fragment / scallop mask */
@@ -664,10 +664,20 @@ a.tile--name:hover { background: var(--surface); }
     count.textContent = rows.filter((r) => r.dataset.g === g).length + ' of 14 services';
     document.querySelectorAll('.step').forEach((s) => s.classList.toggle('is-active', s.dataset.step === g));
   }
-  const steps = document.querySelectorAll('.step');
+  // Measured on scroll: IntersectionObserver ignores rootMargin inside cross-origin iframes.
+  const steps = [...document.querySelectorAll('.step')];
+  let current = '', ticking = false;
+  function pickStep() {
+    ticking = false;
+    const line = window.innerHeight * 0.55;
+    let g = steps[0].dataset.step;
+    for (const s of steps) if (s.getBoundingClientRect().top <= line) g = s.dataset.step;
+    if (g !== current) { current = g; setStep(g); }
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(pickStep); } }, { passive: true });
+  addEventListener('resize', pickStep);
+  pickStep();
   if ('IntersectionObserver' in window) {
-    const so = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) setStep(e.target.dataset.step); }), { rootMargin: '-45% 0px -45% 0px' });
-    steps.forEach((s) => so.observe(s));
     const ro = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('[data-rise]').forEach((el) => ro.observe(el));
   } else {
