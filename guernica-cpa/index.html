@@ -6,6 +6,7 @@
 <title>Guernica &amp; Associates, CPA</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Guernica &amp; Associates is a bilingual CPA firm in Miami Lakes, Florida, preparing, reviewing and auditing financial statements since 1998.">
+<meta name="robots" content="noindex">
 <link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,13 +148,18 @@ p { margin: 0; }
 .pbc__head b { font-weight: 600; font-size: 15px; }
 .pbc__head span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
 .pbc ul { list-style: none; margin: 0; padding: 0; }
-.pbc li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 18px; border-bottom: 1px solid var(--bg); } /* taste-skill-ignore: interface fragment / scallop mask */
-.pbc li:last-child { border-bottom: 0; } /* taste-skill-ignore: interface fragment / scallop mask */
-.chip { font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 999px; white-space: nowrap; transition: background-color .3s ease, color .3s ease; }
-.chip[data-s="req"] { background: var(--bg); color: var(--muted); }
-.chip[data-s="rec"] { background: #e3eef7; color: var(--accent-press); }
-.chip[data-s="tst"] { background: var(--navy); color: #fff; }
-.pbc__foot { padding: 12px 18px; background: var(--bg); font-size: 13px; color: var(--muted); }
+.pbc__intro { padding: 12px 18px 4px; color: var(--muted); font-size: 13px; }
+.pbc li { display: flex; align-items: baseline; gap: 10px; padding: 8px 18px; font-size: 14.5px; transition: color .3s ease, background-color .3s ease; }
+.pbc li::before { content: ""; width: 10px; height: 8px; flex: none; background: var(--line); clip-path: polygon(0 0, 100% 0, 100% 62%, 64% 62%, 50% 100%, 36% 62%, 0 62%); transition: background-color .3s ease; }
+.js .pbc li { color: #64737f; }
+.js .pbc li.on { color: var(--ink); background: var(--bg); }
+.pbc li.on::before, html:not(.js) .pbc li::before { background: var(--navy); }
+.pbc__foot { padding: 12px 18px; background: var(--surface); font-size: 13px; color: var(--ink); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; }
+.pbc__foot a { font-weight: 600; color: var(--accent); }
+
+/* Concept notice */
+.concept { background: var(--surface); font-size: var(--step-small); color: var(--ink); }
+.concept p { padding-block: 10px; }
 
 /* Services */
 .services { padding-block: var(--section); align-items: center; }
@@ -169,6 +175,11 @@ p { margin: 0; }
 .mark { flex: none; width: .78em; height: .62em; background: var(--c, var(--navy)); clip-path: polygon(0 0, 100% 0, 100% 62%, 64% 62%, 50% 100%, 36% 62%, 0 62%); transform: translateY(.04em); }
 .points li:nth-child(3n+2) { --c: var(--accent); }
 .points li:nth-child(3n) { --c: var(--sky); }
+.payroll { margin-top: 64px; }
+.payroll h3 { font-size: var(--step-lead); line-height: 1.2; letter-spacing: -0.01em; }
+.payroll ul { margin-top: 20px; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 40px; font-size: var(--step-small); }
+.payroll li { display: flex; gap: 10px; align-items: baseline; }
+.payroll li::before { content: ""; width: 9px; height: 7px; flex: none; background: var(--accent); clip-path: polygon(0 0, 100% 0, 100% 62%, 64% 62%, 50% 100%, 36% 62%, 0 62%); }
 
 /* Clients list */
 .clients { padding-block: 0 calc(var(--section) * .6); }
@@ -206,7 +217,7 @@ p { margin: 0; }
   mask: radial-gradient(10px at 50% 0, transparent 98%, #000) 50% 0 / 24px 100% repeat-x; } /* taste-skill-ignore: interface fragment / scallop mask */
 .tear a { font-size: var(--step-body); }
 .tear span { font-size: var(--step-small); color: var(--muted); }
-.about__credit { position: absolute; right: max(var(--m), env(safe-area-inset-right, 0px)); bottom: 12px; font-size: 12px; color: #3d3528; background: rgba(255,255,255,.7); padding: 2px 6px; }
+.about__credit { position: absolute; right: max(var(--m), env(safe-area-inset-right, 0px)); bottom: 12px; font-size: 13px; color: #3d3528; background: rgba(255,255,255,.7); padding: 2px 6px; }
 
 /* Proof tiles */
 .proof { padding-block: var(--section); }
@@ -292,6 +303,7 @@ a.tile--name:hover { background: var(--surface); }
   .services__pic { grid-column: 1 / -1; width: 86vw; height: 60svh; margin-bottom: 40px; margin-left: calc(-1 * max(var(--m), env(safe-area-inset-left, 0px))); }
   .services__copy { grid-column: 1 / -1; }
   .points { grid-template-columns: 1fr; gap: 28px; margin-top: 40px; }
+  .payroll ul { grid-template-columns: 1fr 1fr; gap: 10px 20px; }
   .clients__intro { grid-column: 1 / -1; }
   .clients__groups { grid-template-columns: 1fr; margin-top: 40px; }
   .group li { flex-direction: column; gap: 2px; }
@@ -310,6 +322,8 @@ a.tile--name:hover { background: var(--surface); }
 </head>
 <body>
 <script>document.documentElement.classList.add('js');</script>
+
+<div class="concept"><p class="wrap">Redesign concept. This is not the official website of Guernica &amp; Associates, CPA, which is at <a class="link" href="https://www.guernicacpa.com/">guernicacpa.com</a>.</p></div>
 
 <header class="wrap">
   <nav class="nav" aria-label="Main">
@@ -334,7 +348,7 @@ a.tile--name:hover { background: var(--surface); }
       </div>
       <ul class="hero__facts">
         <li>FICPA member</li>
-        <li>Public peer review report</li>
+        <li>Peer review rating: Pass</li>
         <li>Se habla espa&ntilde;ol</li>
       </ul>
     </div>
@@ -384,35 +398,41 @@ a.tile--name:hover { background: var(--surface); }
   <section class="story" id="approach" aria-labelledby="h-approach">
     <div class="wrap grid">
       <div class="story__steps">
-        <h2 class="h2" id="h-approach">How an audit runs here</h2>
-        <div class="step is-active" data-step="1">
-          <h3>One request list, at the start</h3>
-          <p>Before fieldwork we send a single list of everything we need, with due dates, in English or Spanish.</p>
+        <h2 class="h2" id="h-approach">Accounting &amp; auditing</h2>
+        <div class="step is-active" data-step="a">
+          <h3>Statements your lender can rely on</h3>
+          <p>Preparation, compilations, reviews and audits of your financial statements, with the bookkeeping and forecasts behind them.</p>
         </div>
-        <div class="step" data-step="2">
-          <h3>Fieldwork tests what you sent</h3>
-          <p>We confirm balances with your bank and customers, test samples of transactions and walk through the controls behind them.</p>
+        <div class="step" data-step="b">
+          <h3>Controls your board can rely on</h3>
+          <p>Internal control reviews and testing, operational and quality assurance reviews, or your whole internal audit function.</p>
         </div>
-        <div class="step" data-step="3">
-          <h3>A draft before we sign</h3>
-          <p>You read the draft statements and our management letter first. Then we issue the signed report.</p>
+        <div class="step" data-step="c">
+          <h3>Starting, buying or growing</h3>
+          <p>Systems and software for new businesses, start-up consulting, due diligence before an acquisition, and strategic planning.</p>
         </div>
       </div>
       <div class="story__pin">
         <div class="pbc" data-ui>
-          <div class="pbc__head"><b>Audit request list, FY 2026</b><span id="pbc-count">3 of 9 received</span></div>
+          <div class="pbc__head"><b>Accounting &amp; Auditing</b><span id="pbc-count">3 of 14 services</span></div>
+          <p class="pbc__intro">Our experienced accounting and audit professionals can help you with:</p>
           <ul id="pbc">
-            <li>Year-end trial balance <span class="chip" data-s="rec">Received</span></li>
-            <li>Bank statements and reconciliations <span class="chip" data-s="rec">Received</span></li>
-            <li>Accounts receivable aging <span class="chip" data-s="rec">Received</span></li>
-            <li>Accounts payable listing <span class="chip" data-s="req">Requested</span></li>
-            <li>Fixed asset rollforward <span class="chip" data-s="req">Requested</span></li>
-            <li>Loan and lease agreements <span class="chip" data-s="req">Requested</span></li>
-            <li>Board minutes <span class="chip" data-s="req">Requested</span></li>
-            <li>Payroll registers <span class="chip" data-s="req">Requested</span></li>
-            <li>Attorney letters <span class="chip" data-s="req">Requested</span></li>
+            <li data-g="a" class="on">Financial statement preparation, audits, reviews and compilations</li>
+            <li data-g="a" class="on">Bookkeeping and controllership functions</li>
+            <li data-g="c">Accounting system setup for new businesses</li>
+            <li data-g="a" class="on">Financial forecasts and projections</li>
+            <li data-g="c">Business start-up and management consulting</li>
+            <li data-g="c">Accounting software selection and implementation</li>
+            <li data-g="c">Due diligence</li>
+            <li data-g="c">Acquisition planning and due diligence business investigations</li>
+            <li data-g="c">Strategic analysis and planning</li>
+            <li data-g="b">Internal control reviews</li>
+            <li data-g="b">Full outsourcing of internal audit</li>
+            <li data-g="b">Internal controls testing and documentation</li>
+            <li data-g="b">Quality assurance reviews</li>
+            <li data-g="b">Operational audits</li>
           </ul>
-          <div class="pbc__foot" id="pbc-foot">Example list. Yours is written for your company.</div>
+          <div class="pbc__foot"><span>Peer review rating: Pass (year ended Dec 31, 2022)</span><a href="https://www.guernicacpa.com/_files/ugd/37385f_c230e62b45eb47e7815053223981a79b.pdf">Read the report</a></div>
         </div>
       </div>
     </div>
@@ -423,47 +443,62 @@ a.tile--name:hover { background: var(--surface); }
       <img src="img/office-door.jpg" alt="The entrance to Guernica &amp; Associates at 6175 Miami Lakes Drive East, with the firm's blue sign on the glass door" width="900" height="1600" loading="lazy">
     </figure>
     <div class="services__copy" data-rise>
-      <h2 class="h2" id="h-services">Services, in full</h2>
-      <p>The audit is the centre of the practice. Around it sit the books, the controls and the tax work that make an audit go smoothly.</p>
+      <h2 class="h2" id="h-services">Tax and payroll</h2>
+      <p>For businesses of any size or structure (corporations, LLCs, partnerships and non-profits), and for the individuals, families and investors behind them.</p>
       <ul class="points">
-        <li><h3><span class="mark"></span>Audits, reviews, compilations</h3><p>Financial statements at the level your bank, investors or regulator ask for.</p></li>
-        <li><h3><span class="mark"></span>Bookkeeping and controllership</h3><p>Monthly closes and reconciliations, so year-end has no surprises.</p></li>
-        <li><h3><span class="mark"></span>Due diligence</h3><p>Acquisition planning and investigations before you buy a business.</p></li>
-        <li><h3><span class="mark"></span>Internal control reviews</h3><p>Testing and documentation of the controls behind your numbers.</p></li>
-        <li><h3><span class="mark"></span>Accounting system setup</h3><p>Charts of accounts and software for new businesses. QuickBooks ProAdvisor.</p></li>
-        <li><h3><span class="mark"></span>International tax</h3><p>US tax and reporting for foreign investors and international corporations.</p></li>
-        <li><h3><span class="mark"></span>Outsourced internal audit</h3><p>A full internal audit function, reporting to your board or audit committee.</p></li>
-        <li><h3><span class="mark"></span>Forecasts and projections</h3><p>Prospective statements for lenders, investors and your own planning.</p></li>
-        <li><h3><span class="mark"></span>Tax and IRS representation</h3><p>Business returns, and representation before the IRS and state authorities.</p></li>
-        <li><h3><span class="mark"></span>Operational audits</h3><p>Quality assurance reviews and operational audits of how work gets done.</p></li>
-        <li><h3><span class="mark"></span>Strategic planning</h3><p>Analysis and planning for start-ups and growing companies.</p></li>
-        <li><h3><span class="mark"></span>Payroll</h3><p>Online payroll and payroll taxes for small and midsize businesses.</p></li>
+        <li><h3><span class="mark"></span>Individual tax</h3><p>Personal returns prepared with current tax preparation and research software.</p></li>
+        <li><h3><span class="mark"></span>Business tax</h3><p>Returns prepared in compliance with every law, using every saving available.</p></li>
+        <li><h3><span class="mark"></span>International tax</h3><p>Inbound and outbound investment. IRS Certifying Acceptance Agent for ITINs and FIRPTA.</p></li>
+        <li><h3><span class="mark"></span>Tax planning</h3><p>A plan based on the most recent law, for this year and the years ahead.</p></li>
+        <li><h3><span class="mark"></span>Estate and trust tax</h3><p>Planning and preparation for your beneficiaries and your business succession.</p></li>
+        <li><h3><span class="mark"></span>Business valuation</h3><p>Full financial models, up to complex, illiquid securities and Level 3 assets.</p></li>
       </ul>
+      <div class="payroll">
+        <h3>Payroll</h3>
+        <ul>
+          <li>General payroll processing</li>
+          <li>New hire reporting</li>
+          <li>State and local tax filing</li>
+          <li>Federal tax filing</li>
+          <li>Quarterly tax filing</li>
+          <li>Year-end reporting</li>
+          <li>W-2 and 1099 preparation</li>
+          <li>Garnishment payment</li>
+          <li>Retirement plan reporting</li>
+          <li>Paper checks and direct deposit</li>
+          <li>Employee portals</li>
+          <li>Online payroll portal</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <section class="wrap grid clients" aria-labelledby="h-clients">
     <div class="clients__intro" data-rise>
       <h2 class="h2" id="h-clients">Who we work with</h2>
-      <p>Local companies and international clients, served by bilingual professionals in English and Spanish.</p>
+      <p>A bilingual team in Miami Lakes, fluent in English and Spanish, led by a CPA licensed in Florida since 1989.</p>
     </div>
     <div class="clients__groups" data-rise>
       <div class="group">
-        <h3>In the United States</h3>
+        <h3>Our team</h3>
         <ul>
-          <li><span>Small and midsize companies</span><span>Accounting, audit, tax, payroll</span></li>
-          <li><span>National firms</span><span>Audit and advisory</span></li>
-          <li><span>New businesses</span><span>Setup and bookkeeping</span></li>
-          <li><span>Boards and audit committees</span><span>Internal audit</span></li>
+          <li><span>Eduardo A. Guernica, CPA, MST, CVA</span><span>Founder and CEO</span></li>
+          <li><span>Elvis Guernica, M.S.A.</span><span>Audit &amp; Assurance Manager</span></li>
+          <li><span>Ana L. Ramos</span><span>Tax Manager</span></li>
+          <li><span>Loreli Mendez</span><span>Certified Public Accountant</span></li>
+          <li><span>Esmeralda Valdes</span><span>Tax Senior</span></li>
+          <li><span>Mileny Bethencourt</span><span>Administrative Assistant</span></li>
         </ul>
       </div>
       <div class="group">
-        <h3>International</h3>
+        <h3>Our clients</h3>
         <ul>
-          <li><span>Captive foreign insurers</span><span>Audit and tax</span></li>
-          <li><span>International investors</span><span>US tax and due diligence</span></li>
-          <li><span>International corporations</span><span>Accounting and reporting</span></li>
-          <li><span>Spanish-speaking owners</span><span>Every service, en espa&ntilde;ol</span></li>
+          <li><span>National firms</span><span>Corporate, tax, advisory, assurance</span></li>
+          <li><span>Captive foreign insurers</span><span>Assurance and tax</span></li>
+          <li><span>International investors</span><span>International tax and ITINs</span></li>
+          <li><span>Small and midsize companies</span><span>Accounting, tax, payroll</span></li>
+          <li><span>Local and international corporations</span><span>Accounting and reporting</span></li>
+          <li><span>Individuals and families</span><span>Personal, estate and trust tax</span></li>
         </ul>
       </div>
     </div>
@@ -479,29 +514,30 @@ a.tile--name:hover { background: var(--surface); }
       <article class="letter" data-rise>
         <div class="letter__top"><img src="img/logo.png" alt="" width="52" height="52"><h2 class="h2" id="h-about">About the firm</h2></div>
         <div class="letter__body">
-          <p>We have been in practice since 1998, first as Guernica &amp; Gonzalez, CPA and Consultants, and now as Guernica &amp; Associates.</p>
-          <p>Our work is national and international: corporate tax, advisory and assurance for national firms, captive foreign insurance companies and international investors, and for small and midsize companies here in South Florida.</p>
-          <p>Our professionals work in <mark>English and Spanish</mark>, so owners and their staff can talk through their numbers in the language they think in.</p>
-          <p>We treat each client relationship as a partnership. When your statements hold up in front of your bank, your board or your regulator, we have done our job.</p>
+          <p>Since 1998, first as Guernica &amp; Gonzalez and now as Guernica &amp; Associates, we have provided corporate, tax, advisory and assurance services to national firms, captive foreign insurance companies and international investors.</p>
+          <p>We take pride in personal attention. The help you receive comes from years of advanced training, technical expertise and financial acumen, delivered on time.</p>
+          <p>Our bilingual professionals, fluent in <mark>English and Spanish</mark>, help local and international corporations manage their accounting and tax and meet today&rsquo;s reporting requirements.</p>
+          <p>We view every client relationship as a partnership. Our success is a direct result of yours.</p>
         </div>
-        <div class="letter__sign"><em>Guernica &amp; Associates, CPA</em><span>Certified Public Accountants &amp; Consultants</span></div>
+        <div class="letter__sign"><em>Eduardo A. Guernica, CPA, MST, CVA</em><span>Founder and CEO. Licensed CPA in Florida since 1989, MS in Taxation (FIU), Certified Valuation Analyst.</span></div>
       </article>
       <div class="tear"><a class="link" href="mailto:info@guernicacpa.com">info@guernicacpa.com</a><span>We reply in English or Spanish</span></div>
     </div>
+    <span class="about__credit">Ledger: Dupedianer, CC BY-SA 4.0</span>
   </section>
 
   <section class="wrap proof" aria-labelledby="h-proof">
     <div class="tiles" data-rise>
       <div class="tile tile--head">
         <h2 class="h2" id="h-proof">Credentials we hold</h2>
-        <p>An audit is only as good as the firm that signs it. These are ours, and our peer review report is public.</p>
+        <p>Our accounting and audit practice received a peer review rating of Pass in its most recent System Review, for the year ended December 31, 2022.</p>
       </div>
       <div class="tile"><img src="img/ficpa.jpg" alt="Proud member of the Florida Institute of Certified Public Accountants" width="560" height="168" loading="lazy"></div>
       <div class="tile"><img src="img/proadvisor.png" alt="Intuit QuickBooks ProAdvisor" width="346" height="490" loading="lazy"></div>
+      <a class="tile tile--name" href="https://www.guernicacpa.com/_files/ugd/37385f_c230e62b45eb47e7815053223981a79b.pdf"><b>Peer review: Pass</b><span>Read the report</span></a>
+      <div class="tile tile--name"><b>IRS Certifying Acceptance Agent</b><span>ITINs for foreign individuals</span></div>
       <div class="tile"><img src="img/cpa-mark.png" alt="The CPA. Never Underestimate The Value." width="518" height="196" loading="lazy"></div>
       <div class="tile tile--zoom"><img src="img/prestige-2022.jpg" alt="South East USA Prestige Awards, 2022 winner" width="438" height="411" loading="lazy"></div>
-      <a class="tile tile--name" href="https://www.guernicacpa.com/accounting-auditing"><b>Peer review report</b><span>Read it on our audit page</span></a>
-      <div class="tile tile--name"><b>Since 1998</b><span>Formerly Guernica &amp; Gonzalez</span></div>
     </div>
   </section>
 
@@ -620,25 +656,17 @@ a.tile--name:hover { background: var(--surface); }
   }));
   render(false);
 
-  // Pinned request list advances with the steps
-  const states = {
-    1: ['rec','rec','rec','req','req','req','req','req','req'],
-    2: ['tst','tst','tst','rec','rec','rec','rec','rec','req'],
-    3: ['tst','tst','tst','tst','tst','tst','tst','tst','tst']
-  };
-  const label = { req: 'Requested', rec: 'Received', tst: 'Tested' };
-  const chips = [...document.querySelectorAll('#pbc .chip')];
-  const count = $('pbc-count'), foot = $('pbc-foot');
-  function setStep(n) {
-    states[n].forEach((s, i) => { chips[i].dataset.s = s; chips[i].textContent = label[s]; });
-    const got = states[n].filter((s) => s !== 'req').length;
-    count.textContent = n === 3 ? 'Draft report sent' : got + ' of 9 received';
-    foot.textContent = n === 3 ? 'Every item tested. Management letter attached to the draft.' : 'Example list. Yours is written for your company.';
-    document.querySelectorAll('.step').forEach((s) => s.classList.toggle('is-active', s.dataset.step == n));
+  // Pinned service list highlights the group each statement describes
+  const rows = [...document.querySelectorAll('#pbc li')];
+  const count = $('pbc-count');
+  function setStep(g) {
+    rows.forEach((r) => r.classList.toggle('on', r.dataset.g === g));
+    count.textContent = rows.filter((r) => r.dataset.g === g).length + ' of 14 services';
+    document.querySelectorAll('.step').forEach((s) => s.classList.toggle('is-active', s.dataset.step === g));
   }
   const steps = document.querySelectorAll('.step');
   if ('IntersectionObserver' in window) {
-    const so = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) setStep(+e.target.dataset.step); }), { rootMargin: '-45% 0px -45% 0px' });
+    const so = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) setStep(e.target.dataset.step); }), { rootMargin: '-45% 0px -45% 0px' });
     steps.forEach((s) => so.observe(s));
     const ro = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('[data-rise]').forEach((el) => ro.observe(el));
