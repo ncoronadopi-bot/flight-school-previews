@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Guernica &amp; Associates, CPA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Guernica &amp; Associates is a bilingual CPA firm in Miami Lakes, Florida, preparing, reviewing and auditing financial statements since 1998.">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: one 12-column grid inside equal outer margins; a working engagement picker carries the hero, a pinned audit request list carries the story. */
+:root {
+  --bg: #f5f8fa;
+  --surface: #dfe9f1;
+  --paper: #ffffff;
+  --navy: #0c3c60;
+  --ink: #0e2232;
+  --muted: #485b6a;
+  --accent: #1c6aa3;
+  --accent-press: #155584;
+  --sky: #6ea4ca;
+  --line: #c6d4df;
+  --on-navy: #ffffff;
+  --on-navy-soft: #c9dbe8;
+
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  --step-head: clamp(2rem, 1.3rem + 2.6vw, 3.5rem);
+  --step-display: clamp(2.1rem, 0.9rem + 4.6vw, 5rem);
+
+  --m: clamp(16px, 2.6vw, 40px);
+  --gutter: clamp(16px, 2vw, 32px);
+  --section: clamp(96px, 11vw, 176px);
+  --radius: 4px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-size: var(--step-body); line-height: 1.5;
+  overflow-x: clip;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-weight: 400; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+::selection { background: var(--navy); color: var(--on-navy); }
+
+.wrap {
+  padding-left: max(var(--m), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--m), env(safe-area-inset-right, 0px));
+  max-width: 1520px; margin-inline: auto;
+}
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  min-height: 48px; padding: 0 1.4em; border-radius: var(--radius);
+  background: var(--accent); color: #fff; font: 600 var(--step-body)/1 var(--font);
+  text-decoration: none; border: 0; cursor: pointer;
+  transition: background-color .18s ease, transform .18s var(--ease-out);
+}
+.btn:hover { background: var(--accent-press); }
+.btn:active { transform: translateY(1px) scale(.98); }
+.btn--small { min-height: 44px; font-size: var(--step-small); padding: 0 1.1em; }
+
+.link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; transition: color .15s ease; }
+.link:hover { color: var(--accent); }
+
+/* Nav */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: var(--gutter); padding-block: 20px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; font-size: var(--step-body); }
+.brand img { width: 48px; height: 48px; }
+.nav__links { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 36px); font-size: var(--step-small); }
+.nav__links a:not(.btn) { text-decoration: none; padding-block: 8px; transition: color .15s ease; }
+.nav__links a:not(.btn):hover { color: var(--accent); }
+
+/* Hero */
+.hero { padding-block: clamp(24px, 4vw, 64px) clamp(48px, 6vw, 96px); row-gap: 40px; align-items: stretch; }
+.hero__copy { grid-column: 1 / span 6; padding-top: clamp(8px, 3vw, 48px); display: flex; flex-direction: column; }
+.hero__facts { margin-top: auto; padding-top: 48px; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: var(--step-small); color: var(--muted); list-style: none; padding-left: 0; margin-bottom: 0; }
+.hero__facts li { display: flex; align-items: baseline; gap: 8px; }
+.hero__facts li::before { content: ""; width: 10px; height: 8px; background: var(--navy); clip-path: polygon(0 0, 100% 0, 100% 62%, 64% 62%, 50% 100%, 36% 62%, 0 62%); flex: none; }
+.hero h1 { font-size: var(--step-display); line-height: 1; letter-spacing: -0.03em; }
+.hero__sub { margin-top: 36px; max-width: 34em; font-size: var(--step-body); }
+.hero__actions { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.hero__phone { font-size: var(--step-body); font-variant-numeric: tabular-nums; }
+.hero__stage { grid-column: 7 / span 6; background: var(--surface); padding: clamp(16px, 3vw, 48px); border-radius: var(--radius); }
+
+/* Engagement picker (interface fragment) */
+[data-ui] { font-size: 14px; line-height: 1.45; }
+.picker { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; color: var(--ink); } /* taste-skill-ignore: interface fragment / scallop mask */
+.picker__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: interface fragment / scallop mask */
+.picker__title { font-weight: 600; font-size: 15px; }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; } /* taste-skill-ignore: interface fragment / scallop mask */
+.lang button { font: 600 13px/1 var(--font); padding: 8px 12px; min-height: 32px; border: 0; background: transparent; color: var(--muted); cursor: pointer; transition: background-color .15s ease, color .15s ease; } /* taste-skill-ignore: interface fragment / scallop mask */
+.lang button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+.lang button:hover:not([aria-pressed="true"]) { background: var(--surface); color: var(--ink); }
+.picker__body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.picker fieldset { border: 0; margin: 0; padding: 16px 18px 18px; border-right: 1px solid var(--line); min-width: 0; } /* taste-skill-ignore: interface fragment / scallop mask */
+.picker legend { font-size: 13px; color: var(--muted); padding: 0; margin-bottom: 10px; }
+.opt { display: flex; gap: 10px; align-items: flex-start; padding: 9px 10px; margin-inline: -10px; border-radius: 4px; cursor: pointer; transition: background-color .15s ease; }
+.opt:hover { background: var(--bg); }
+.opt input { margin: 3px 0 0; accent-color: var(--navy); width: 16px; height: 16px; flex: none; }
+.opt:has(input:checked) { background: var(--surface); }
+.result { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.result__name { font-size: 22px; line-height: 1.15; letter-spacing: -0.01em; }
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.levels span { font-size: 12px; text-align: center; padding: 6px 4px; border-radius: 3px; background: var(--bg); color: var(--muted); transition: background-color .25s ease, color .25s ease; }
+.levels span.on { background: var(--navy); color: #fff; }
+.levels__cap { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.result dl { margin: 0; display: grid; gap: 10px; }
+.result dt { font-size: 12px; color: var(--muted); }
+.result dd { margin: 2px 0 0; }
+.result q { quotes: "\201C" "\201D"; display: block; padding: 10px 12px; background: var(--bg); border-left: 3px solid var(--sky); font-size: 13.5px; }
+.result__ask { margin-top: auto; font-weight: 600; color: var(--accent); }
+.result.swap > * { animation: swapIn .35s var(--ease-out) both; }
+.result.swap > *:nth-child(2) { animation-delay: .04s; }
+.result.swap > *:nth-child(3) { animation-delay: .08s; }
+.result.swap > *:nth-child(4) { animation-delay: .12s; }
+@keyframes swapIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Section headings */
+.h2 { font-size: var(--step-head); line-height: 1.02; letter-spacing: -0.025em; }
+
+/* Story (pinned) */
+.story { padding-block: var(--section); background: var(--navy); color: var(--on-navy); }
+.story .grid { align-items: start; }
+.story__steps { grid-column: 1 / span 5; }
+.story__steps .h2 { margin-bottom: clamp(40px, 6vw, 96px); }
+.step { min-height: 62vh; padding-bottom: 48px; transition: opacity .3s ease; }
+.step:last-child { min-height: 0; padding-bottom: 0; }
+.step h3 { font-size: var(--step-lead); line-height: 1.2; letter-spacing: -0.01em; }
+.step p { margin-top: 16px; max-width: 30em; color: var(--on-navy-soft); }
+.js .step:not(.is-active) { opacity: .45; }
+.story__pin { grid-column: 7 / span 6; position: sticky; top: 14vh; }
+.pbc { background: var(--paper); color: var(--ink); border-radius: 6px; overflow: hidden; } /* taste-skill-ignore: interface fragment / scallop mask */
+.pbc__head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: interface fragment / scallop mask */
+.pbc__head b { font-weight: 600; font-size: 15px; }
+.pbc__head span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.pbc ul { list-style: none; margin: 0; padding: 0; }
+.pbc li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 18px; border-bottom: 1px solid var(--bg); } /* taste-skill-ignore: interface fragment / scallop mask */
+.pbc li:last-child { border-bottom: 0; } /* taste-skill-ignore: interface fragment / scallop mask */
+.chip { font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 999px; white-space: nowrap; transition: background-color .3s ease, color .3s ease; }
+.chip[data-s="req"] { background: var(--bg); color: var(--muted); }
+.chip[data-s="rec"] { background: #e3eef7; color: var(--accent-press); }
+.chip[data-s="tst"] { background: var(--navy); color: #fff; }
+.pbc__foot { padding: 12px 18px; background: var(--bg); font-size: 13px; color: var(--muted); }
+
+/* Services */
+.services { padding-block: var(--section); align-items: center; }
+.services__pic { grid-column: 1 / span 5; margin-left: calc(-1 * max(var(--m), env(safe-area-inset-left, 0px)) - 6vw); height: min(78svh, 760px); overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 62% 86%, 50% 100%, 38% 86%, 0 86%); }
+.services__pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; animation: drift 22s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: scale(1.02); } to { transform: scale(1.1) translateY(-1.5%); } }
+.services__copy { grid-column: 7 / span 6; }
+.services__copy > p { margin-top: 20px; max-width: 34em; }
+.points { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 40px; list-style: none; padding: 0; }
+.points h3 { font-size: var(--step-body); font-weight: 600; line-height: 1.3; display: flex; gap: 10px; align-items: baseline; }
+.points p { margin-top: 6px; font-size: var(--step-small); color: var(--muted); }
+.mark { flex: none; width: .78em; height: .62em; background: var(--c, var(--navy)); clip-path: polygon(0 0, 100% 0, 100% 62%, 64% 62%, 50% 100%, 36% 62%, 0 62%); transform: translateY(.04em); }
+.points li:nth-child(3n+2) { --c: var(--accent); }
+.points li:nth-child(3n) { --c: var(--sky); }
+
+/* Clients list */
+.clients { padding-block: 0 calc(var(--section) * .6); }
+.clients__intro { grid-column: 1 / span 6; }
+.clients__intro p { margin-top: 20px; max-width: 32em; }
+.clients__groups { grid-column: 1 / -1; margin-top: 64px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px var(--gutter); }
+.group h3 { font-size: var(--step-lead); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; }
+.group ul { list-style: none; margin: 0; padding: 0; }
+.group li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; min-height: 48px; padding-block: 10px; }
+.group li > span:first-child { display: flex; align-items: baseline; gap: 12px; font-size: var(--step-body); line-height: 1.3; }
+.group li > span:first-child::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--dot, var(--navy)); flex: none; transform: translateY(-.1em); }
+.group:nth-child(2) li > span:first-child::before { --dot: var(--sky); }
+.group li > span:last-child { font-size: var(--step-small); color: var(--muted); text-align: right; white-space: nowrap; }
+
+/* Place band */
+.place { position: relative; margin-top: 0; }
+.place img { width: 100%; height: clamp(320px, 52vw, 720px); object-fit: cover; object-position: 50% 35%; }
+.place figcaption { padding-top: 14px; font-size: var(--step-small); color: var(--muted); }
+
+/* About letter on ledger */
+.about { margin-top: var(--section); position: relative; padding-block: clamp(64px, 9vw, 140px); background: #d9cbb2 url("assets/altes-kontobuch.jpg") center/cover no-repeat; }
+.letter { position: relative; max-width: 640px; margin-inline: auto; background: var(--paper); padding: clamp(28px, 5vw, 60px) clamp(24px, 5vw, 60px) 48px;
+  -webkit-mask: radial-gradient(10px at 50% 100%, transparent 98%, #000) 50% 0 / 24px 100% repeat-x; /* taste-skill-ignore: interface fragment / scallop mask */
+  mask: radial-gradient(10px at 50% 100%, transparent 98%, #000) 50% 0 / 24px 100% repeat-x; } /* taste-skill-ignore: interface fragment / scallop mask */
+.letter__top { display: flex; align-items: center; gap: 16px; }
+.letter__top img { width: 52px; height: 52px; }
+.letter .h2 { font-size: var(--step-lead); line-height: 1.2; }
+.letter__body { margin-top: 28px; display: grid; gap: 1.1em; font-size: var(--step-body); line-height: 1.55; }
+.letter mark { background: var(--surface); color: inherit; padding: 0 .15em; }
+.letter__sign { margin-top: 32px; }
+.letter__sign em { display: block; font-size: var(--step-lead); }
+.letter__sign span { display: block; margin-top: 4px; font-size: var(--step-small); color: var(--muted); }
+.tear { max-width: 640px; margin: 10px auto 0; background: var(--paper); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; padding: 20px clamp(24px, 5vw, 60px);
+  -webkit-mask: radial-gradient(10px at 50% 0, transparent 98%, #000) 50% 0 / 24px 100% repeat-x; /* taste-skill-ignore: interface fragment / scallop mask */
+  mask: radial-gradient(10px at 50% 0, transparent 98%, #000) 50% 0 / 24px 100% repeat-x; } /* taste-skill-ignore: interface fragment / scallop mask */
+.tear a { font-size: var(--step-body); }
+.tear span { font-size: var(--step-small); color: var(--muted); }
+.about__credit { position: absolute; right: max(var(--m), env(safe-area-inset-right, 0px)); bottom: 12px; font-size: 12px; color: #3d3528; background: rgba(255,255,255,.7); padding: 2px 6px; }
+
+/* Proof tiles */
+.proof { padding-block: var(--section); }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.tile { aspect-ratio: 3 / 2; background: var(--paper); border-radius: var(--radius); display: grid; place-items: center; padding: 24px; position: relative; text-decoration: none; }
+.tile img { max-height: 92px; width: auto; max-width: 82%; object-fit: contain; mix-blend-mode: multiply; }
+.tile--zoom { overflow: hidden; }
+.tile--zoom img { transform: scale(1.9); }
+.tile--head { grid-column: span 2; aspect-ratio: auto; background: var(--navy); color: var(--on-navy); place-items: start; align-content: space-between; }
+.tile--head p { color: var(--on-navy-soft); font-size: var(--step-small); max-width: 30em; }
+.tile--name { place-items: start; align-content: space-between; }
+.tile--name b { font-size: var(--step-lead); font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
+.tile--name span { font-size: var(--step-small); color: var(--muted); }
+a.tile--name { transition: background-color .2s ease; }
+a.tile--name:hover { background: var(--surface); }
+
+/* Contact */
+.contact { padding-block: var(--section) calc(var(--section) * .6); align-items: start; }
+.contact__line { grid-column: 1 / span 5; font-size: var(--step-lead); line-height: 1.25; letter-spacing: -0.01em; }
+.contact__pic { grid-column: 7 / span 2; aspect-ratio: 1; height: auto; object-fit: cover; object-position: 30% 40%; width: 100%; max-width: 180px; justify-self: end; }
+.contact__info { grid-column: 9 / span 4; }
+.contact__info h2 { font-size: var(--step-body); font-weight: 600; }
+.contact__info ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 10px; font-size: var(--step-body); font-variant-numeric: tabular-nums; }
+.contact__info address { font-style: normal; margin-top: 20px; font-size: var(--step-small); color: var(--muted); }
+
+/* Footer */
+.foot { padding-block: 40px 32px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px 24px; align-items: baseline; font-size: var(--step-small); }
+.foot__links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.foot__links a { text-decoration: none; }
+.foot__links a:hover { color: var(--accent); }
+.foot__right { text-align: right; color: var(--muted); }
+.foot__left { color: var(--muted); }
+.credits { padding-bottom: 32px; font-size: 13px; color: var(--muted); max-width: 70em; }
+
+/* Entrances */
+.js [data-rise] > * { opacity: 0; transform: translateY(24px); }
+.js [data-rise].in > * { opacity: 1; transform: none; transition: opacity .6s var(--ease-out), transform .7s var(--ease-out); }
+.js [data-rise].in > *:nth-child(2) { transition-delay: .08s; }
+.js [data-rise].in > *:nth-child(3) { transition-delay: .16s; }
+.js [data-rise].in > *:nth-child(4) { transition-delay: .24s; }
+.js [data-rise].in > *:nth-child(5) { transition-delay: .32s; }
+.js [data-rise].in > *:nth-child(n+6) { transition-delay: .4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js [data-rise] > * { opacity: 1; transform: none; }
+  .services__pic img, .result.swap > * { animation: none; }
+  * { transition-duration: 0s !important; }
+}
+
+/* Tablet */
+@media (max-width: 1080px) {
+  .hero__copy, .hero__stage { grid-column: 1 / -1; }
+  .hero__stage { max-width: 760px; }
+  .story__steps { grid-column: 1 / span 6; }
+  .story__pin { grid-column: 7 / span 6; }
+  .services__pic { grid-column: 1 / span 5; }
+  .services__copy { grid-column: 6 / span 7; }
+  .points { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .points li:nth-child(n) { --c: var(--navy); }
+  .points li:nth-child(even) { --c: var(--accent); }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile--head { grid-column: 1 / -1; min-height: 200px; }
+  .contact__line { grid-column: 1 / -1; margin-bottom: 40px; }
+  .contact__pic { grid-column: 1 / span 3; justify-self: start; }
+  .contact__info { grid-column: 4 / span 9; }
+}
+
+/* Phone */
+@media (max-width: 720px) {
+  .nav__links a:not(.btn) { display: none; }
+  .brand span { font-size: 15px; }
+  .brand img { width: 40px; height: 40px; }
+  .hero h1 { font-size: 8.4vw; }
+  .hero__sub { margin-top: 24px; }
+  .hero__stage { padding: 12px; margin-inline: -4px; }
+  .picker__body { grid-template-columns: 1fr; }
+  .picker fieldset { border-right: 0; border-bottom: 1px solid var(--line); } /* taste-skill-ignore: interface fragment / scallop mask */
+  .story__steps, .story__pin { grid-column: 1 / -1; }
+  .story__pin { position: static; margin-top: 40px; }
+  .step { min-height: 0; padding-bottom: 40px; }
+  .js .step:not(.is-active) { opacity: 1; }
+  .services__pic { grid-column: 1 / -1; width: 86vw; height: 60svh; margin-bottom: 40px; margin-left: calc(-1 * max(var(--m), env(safe-area-inset-left, 0px))); }
+  .services__copy { grid-column: 1 / -1; }
+  .points { grid-template-columns: 1fr; gap: 28px; margin-top: 40px; }
+  .clients__intro { grid-column: 1 / -1; }
+  .clients__groups { grid-template-columns: 1fr; margin-top: 40px; }
+  .group li { flex-direction: column; gap: 2px; }
+  .group li > span:last-child { text-align: left; padding-left: 26px; white-space: normal; }
+  .tile img { max-height: 56px; }
+  .tile { padding: 16px; }
+  .tile--name b { font-size: 1.1rem; }
+  .contact__pic { grid-column: 1 / span 4; max-width: 96px; }
+  .contact__info { grid-column: 5 / -1; }
+  .contact__info ul { margin-top: 12px; }
+  .foot { grid-template-columns: 1fr; }
+  .foot__links { justify-content: flex-start; }
+  .foot__right { text-align: left; }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<header class="wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" id="top"><img src="img/logo.png" alt="" width="48" height="48"><span>Guernica &amp; Associates</span></a>
+    <div class="nav__links">
+      <a href="#services">Services</a>
+      <a href="#approach">How we work</a>
+      <a href="#about">About</a>
+      <a class="btn btn--small" href="#contact">Book a consultation</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap grid hero" aria-labelledby="h1">
+    <div class="hero__copy" data-rise>
+      <h1 id="h1">Accounting &amp; audit<br>since 1998</h1>
+      <p class="hero__sub">Guernica &amp; Associates is a bilingual CPA firm in Miami Lakes, Florida. We prepare, review and audit financial statements for companies, captive insurers and international investors.</p>
+      <div class="hero__actions">
+        <a class="btn" href="#contact">Book a consultation</a>
+        <span class="hero__phone">or call <a class="link" href="tel:+13054853131">305-485-3131</a></span>
+      </div>
+      <ul class="hero__facts">
+        <li>FICPA member</li>
+        <li>Public peer review report</li>
+        <li>Se habla espa&ntilde;ol</li>
+      </ul>
+    </div>
+
+    <div class="hero__stage">
+      <div class="picker" data-ui id="picker">
+        <div class="picker__head">
+          <span class="picker__title" data-t="title">Which report do you need?</span>
+          <div class="lang" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+        </div>
+        <div class="picker__body">
+          <fieldset>
+            <legend data-t="ask">Who is asking for your financial statements?</legend>
+            <label class="opt"><input type="radio" name="who" id="who-bank" value="bank" checked><span data-t="o_bank">My bank</span></label>
+            <label class="opt"><input type="radio" name="who" id="who-investors" value="investors"><span data-t="o_investors">Investors or a buyer</span></label>
+            <label class="opt"><input type="radio" name="who" id="who-captive" value="captive"><span data-t="o_captive">My captive insurer&rsquo;s regulator</span></label>
+            <label class="opt"><input type="radio" name="who" id="who-board" value="board"><span data-t="o_board">Our board or audit committee</span></label>
+            <label class="opt"><input type="radio" name="who" id="who-us" value="us"><span data-t="o_us">Just us, to run the business</span></label>
+          </fieldset>
+          <div class="result" id="result" aria-live="polite">
+            <div>
+              <div class="result__name" id="r-name">A review</div>
+            </div>
+            <div>
+              <div class="levels" aria-hidden="true">
+                <span data-l="comp" data-t="l_comp">Compilation</span>
+                <span data-l="rev" class="on" data-t="l_rev">Review</span>
+                <span data-l="aud" data-t="l_aud">Audit</span>
+              </div>
+              <div class="levels__cap" id="r-level">Limited assurance</div>
+            </div>
+            <dl>
+              <div><dt data-t="d_do">What we do</dt><dd id="r-do">We analyse your numbers and question management on anything unusual. We do not test transactions or confirm balances.</dd></div>
+              <div><dt data-t="d_says">What the report says</dt><dd><q id="r-says">&hellip;we are not aware of any material modifications that should be made to the accompanying financial statements&hellip;</q></dd></div>
+              <div><dt data-t="d_note">Good to know</dt><dd id="r-note">Your loan agreement names the level. Larger credit lines often call for an audit instead.</dd></div>
+            </dl>
+            <a class="result__ask link" id="r-ask" href="mailto:info@guernicacpa.com?subject=Review%20engagement">Ask about a review</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="approach" aria-labelledby="h-approach">
+    <div class="wrap grid">
+      <div class="story__steps">
+        <h2 class="h2" id="h-approach">How an audit runs here</h2>
+        <div class="step is-active" data-step="1">
+          <h3>One request list, at the start</h3>
+          <p>Before fieldwork we send a single list of everything we need, with due dates, in English or Spanish.</p>
+        </div>
+        <div class="step" data-step="2">
+          <h3>Fieldwork tests what you sent</h3>
+          <p>We confirm balances with your bank and customers, test samples of transactions and walk through the controls behind them.</p>
+        </div>
+        <div class="step" data-step="3">
+          <h3>A draft before we sign</h3>
+          <p>You read the draft statements and our management letter first. Then we issue the signed report.</p>
+        </div>
+      </div>
+      <div class="story__pin">
+        <div class="pbc" data-ui>
+          <div class="pbc__head"><b>Audit request list, FY 2026</b><span id="pbc-count">3 of 9 received</span></div>
+          <ul id="pbc">
+            <li>Year-end trial balance <span class="chip" data-s="rec">Received</span></li>
+            <li>Bank statements and reconciliations <span class="chip" data-s="rec">Received</span></li>
+            <li>Accounts receivable aging <span class="chip" data-s="rec">Received</span></li>
+            <li>Accounts payable listing <span class="chip" data-s="req">Requested</span></li>
+            <li>Fixed asset rollforward <span class="chip" data-s="req">Requested</span></li>
+            <li>Loan and lease agreements <span class="chip" data-s="req">Requested</span></li>
+            <li>Board minutes <span class="chip" data-s="req">Requested</span></li>
+            <li>Payroll registers <span class="chip" data-s="req">Requested</span></li>
+            <li>Attorney letters <span class="chip" data-s="req">Requested</span></li>
+          </ul>
+          <div class="pbc__foot" id="pbc-foot">Example list. Yours is written for your company.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap grid services" id="services" aria-labelledby="h-services">
+    <figure class="services__pic" style="margin-top:0;margin-bottom:0;margin-right:0">
+      <img src="img/office-door.jpg" alt="The entrance to Guernica &amp; Associates at 6175 Miami Lakes Drive East, with the firm's blue sign on the glass door" width="900" height="1600" loading="lazy">
+    </figure>
+    <div class="services__copy" data-rise>
+      <h2 class="h2" id="h-services">Services, in full</h2>
+      <p>The audit is the centre of the practice. Around it sit the books, the controls and the tax work that make an audit go smoothly.</p>
+      <ul class="points">
+        <li><h3><span class="mark"></span>Audits, reviews, compilations</h3><p>Financial statements at the level your bank, investors or regulator ask for.</p></li>
+        <li><h3><span class="mark"></span>Bookkeeping and controllership</h3><p>Monthly closes and reconciliations, so year-end has no surprises.</p></li>
+        <li><h3><span class="mark"></span>Due diligence</h3><p>Acquisition planning and investigations before you buy a business.</p></li>
+        <li><h3><span class="mark"></span>Internal control reviews</h3><p>Testing and documentation of the controls behind your numbers.</p></li>
+        <li><h3><span class="mark"></span>Accounting system setup</h3><p>Charts of accounts and software for new businesses. QuickBooks ProAdvisor.</p></li>
+        <li><h3><span class="mark"></span>International tax</h3><p>US tax and reporting for foreign investors and international corporations.</p></li>
+        <li><h3><span class="mark"></span>Outsourced internal audit</h3><p>A full internal audit function, reporting to your board or audit committee.</p></li>
+        <li><h3><span class="mark"></span>Forecasts and projections</h3><p>Prospective statements for lenders, investors and your own planning.</p></li>
+        <li><h3><span class="mark"></span>Tax and IRS representation</h3><p>Business returns, and representation before the IRS and state authorities.</p></li>
+        <li><h3><span class="mark"></span>Operational audits</h3><p>Quality assurance reviews and operational audits of how work gets done.</p></li>
+        <li><h3><span class="mark"></span>Strategic planning</h3><p>Analysis and planning for start-ups and growing companies.</p></li>
+        <li><h3><span class="mark"></span>Payroll</h3><p>Online payroll and payroll taxes for small and midsize businesses.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap grid clients" aria-labelledby="h-clients">
+    <div class="clients__intro" data-rise>
+      <h2 class="h2" id="h-clients">Who we work with</h2>
+      <p>Local companies and international clients, served by bilingual professionals in English and Spanish.</p>
+    </div>
+    <div class="clients__groups" data-rise>
+      <div class="group">
+        <h3>In the United States</h3>
+        <ul>
+          <li><span>Small and midsize companies</span><span>Accounting, audit, tax, payroll</span></li>
+          <li><span>National firms</span><span>Audit and advisory</span></li>
+          <li><span>New businesses</span><span>Setup and bookkeeping</span></li>
+          <li><span>Boards and audit committees</span><span>Internal audit</span></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3>International</h3>
+        <ul>
+          <li><span>Captive foreign insurers</span><span>Audit and tax</span></li>
+          <li><span>International investors</span><span>US tax and due diligence</span></li>
+          <li><span>International corporations</span><span>Accounting and reporting</span></li>
+          <li><span>Spanish-speaking owners</span><span>Every service, en espa&ntilde;ol</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <figure class="wrap place" style="margin-bottom:0">
+    <img src="assets/miami-lakes-drive-entrance-feature.jpg" alt="The Town of Miami Lakes entrance sign under palm trees" width="1920" height="1280" loading="lazy">
+    <figcaption>Miami Lakes, Florida. Our office is at 6175 Miami Lakes Drive East.</figcaption>
+  </figure>
+
+  <section class="about" id="about" aria-labelledby="h-about">
+    <div class="wrap">
+      <article class="letter" data-rise>
+        <div class="letter__top"><img src="img/logo.png" alt="" width="52" height="52"><h2 class="h2" id="h-about">About the firm</h2></div>
+        <div class="letter__body">
+          <p>We have been in practice since 1998, first as Guernica &amp; Gonzalez, CPA and Consultants, and now as Guernica &amp; Associates.</p>
+          <p>Our work is national and international: corporate tax, advisory and assurance for national firms, captive foreign insurance companies and international investors, and for small and midsize companies here in South Florida.</p>
+          <p>Our professionals work in <mark>English and Spanish</mark>, so owners and their staff can talk through their numbers in the language they think in.</p>
+          <p>We treat each client relationship as a partnership. When your statements hold up in front of your bank, your board or your regulator, we have done our job.</p>
+        </div>
+        <div class="letter__sign"><em>Guernica &amp; Associates, CPA</em><span>Certified Public Accountants &amp; Consultants</span></div>
+      </article>
+      <div class="tear"><a class="link" href="mailto:info@guernicacpa.com">info@guernicacpa.com</a><span>We reply in English or Spanish</span></div>
+    </div>
+  </section>
+
+  <section class="wrap proof" aria-labelledby="h-proof">
+    <div class="tiles" data-rise>
+      <div class="tile tile--head">
+        <h2 class="h2" id="h-proof">Credentials we hold</h2>
+        <p>An audit is only as good as the firm that signs it. These are ours, and our peer review report is public.</p>
+      </div>
+      <div class="tile"><img src="img/ficpa.jpg" alt="Proud member of the Florida Institute of Certified Public Accountants" width="560" height="168" loading="lazy"></div>
+      <div class="tile"><img src="img/proadvisor.png" alt="Intuit QuickBooks ProAdvisor" width="346" height="490" loading="lazy"></div>
+      <div class="tile"><img src="img/cpa-mark.png" alt="The CPA. Never Underestimate The Value." width="518" height="196" loading="lazy"></div>
+      <div class="tile tile--zoom"><img src="img/prestige-2022.jpg" alt="South East USA Prestige Awards, 2022 winner" width="438" height="411" loading="lazy"></div>
+      <a class="tile tile--name" href="https://www.guernicacpa.com/accounting-auditing"><b>Peer review report</b><span>Read it on our audit page</span></a>
+      <div class="tile tile--name"><b>Since 1998</b><span>Formerly Guernica &amp; Gonzalez</span></div>
+    </div>
+  </section>
+
+  <section class="wrap grid contact" id="contact" aria-labelledby="h-contact">
+    <p class="contact__line" data-rise><span>Bring us the statements your bank, board or regulator is asking for. We will tell you what it takes.</span></p>
+    <img class="contact__pic" src="img/office-sign.jpg" alt="The Guernica &amp; Associates sign on the office door, number 6175" width="1600" height="900" loading="lazy">
+    <div class="contact__info">
+      <h2 id="h-contact">Visit, call or write</h2>
+      <ul>
+        <li><a class="link" href="tel:+13054853131">305-485-3131</a></li>
+        <li><a class="link" href="mailto:info@guernicacpa.com">info@guernicacpa.com</a></li>
+      </ul>
+      <address>6175 Miami Lakes Dr. E, Miami Lakes, FL 33014<br>Se habla espa&ntilde;ol</address>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="foot">
+    <span class="foot__left">CPA firm in Miami Lakes, Florida</span>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://www.guernicacpa.com/blog">Blog</a>
+    </nav>
+    <span class="foot__right">&copy; 2026 Guernica &amp; Associates, CPA</span>
+  </div>
+  <p class="credits">Pictures: <a href="https://commons.wikimedia.org/wiki/File:Miami_Lakes_Drive_Entrance_Feature.jpg">&ldquo;Miami Lakes Drive Entrance Feature&rdquo;</a> by Town of Miami Lakes, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Altes_KontoBuch.jpg">&ldquo;Altes KontoBuch&rdquo;</a> by Dupedianer, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; both via Wikimedia Commons.</p>
+</footer>
+
+<script>
+(() => {
+  const T = {
+    en: {
+      title: 'Which report do you need?', ask: 'Who is asking for your financial statements?',
+      o_bank: 'My bank', o_investors: 'Investors or a buyer', o_captive: 'My captive insurer’s regulator', o_board: 'Our board or audit committee', o_us: 'Just us, to run the business',
+      l_comp: 'Compilation', l_rev: 'Review', l_aud: 'Audit', d_do: 'What we do', d_says: 'What the report says', d_note: 'Good to know',
+      lv: { none: 'No assurance', limited: 'Limited assurance', reasonable: 'Reasonable assurance', apart: 'Separate from the three levels' },
+      r: {
+        bank: { name: 'A review', lvl: 'rev', a: 'limited', ask: 'Ask about a review',
+          do: 'We analyse your numbers and question management on anything unusual. We do not test transactions or confirm balances.',
+          says: '…we are not aware of any material modifications that should be made to the accompanying financial statements…',
+          note: 'Your loan agreement names the level. Larger credit lines often call for an audit instead.' },
+        investors: { name: 'An audit', lvl: 'aud', a: 'reasonable', ask: 'Ask about an audit',
+          do: 'We test transactions, confirm balances with banks and customers, and evaluate the controls that matter to the statements.',
+          says: '…the financial statements present fairly, in all material respects, the financial position of the Company…',
+          note: 'Buying or selling a business? We also run acquisition due diligence.' },
+        captive: { name: 'An audit', lvl: 'aud', a: 'reasonable', ask: 'Ask about a captive audit',
+          do: 'We audit the captive’s statements for its annual filing, including premiums, investments and loss reserves.',
+          says: '…the financial statements present fairly, in all material respects, the financial position of the Company…',
+          note: 'Captive insurers generally file audited statements with their domicile’s regulator every year.' },
+        board: { name: 'Outsourced internal audit', lvl: '', a: 'apart', ask: 'Ask about internal audit',
+          do: 'We test and document your internal controls, run operational audits and report what we find to the board.',
+          says: 'Findings, their risk, and management’s response, written for your audit committee.',
+          note: 'This can run all year alongside your external audit.' },
+        us: { name: 'A compilation', lvl: 'comp', a: 'none', ask: 'Ask about a compilation',
+          do: 'We prepare your financial statements from your records without verifying them. Often paired with monthly bookkeeping.',
+          says: '…we do not express an opinion, a conclusion, nor provide any form of assurance on these financial statements.',
+          note: 'The lightest engagement. Easy to step up to a review when a lender asks.' }
+      }
+    },
+    es: {
+      title: '¿Qué informe necesita?', ask: '¿Quién le pide sus estados financieros?',
+      o_bank: 'Mi banco', o_investors: 'Inversionistas o un comprador', o_captive: 'El regulador de mi aseguradora cautiva', o_board: 'Mi junta o comité de auditoría', o_us: 'Solo nosotros, para dirigir la empresa',
+      l_comp: 'Compilación', l_rev: 'Revisión', l_aud: 'Auditoría', d_do: 'Qué hacemos', d_says: 'Qué dice el informe', d_note: 'Bueno saber',
+      lv: { none: 'Sin seguridad', limited: 'Seguridad limitada', reasonable: 'Seguridad razonable', apart: 'Aparte de los tres niveles' },
+      r: {
+        bank: { name: 'Una revisión', lvl: 'rev', a: 'limited', ask: 'Consultar sobre una revisión',
+          do: 'Analizamos sus cifras y preguntamos a la gerencia sobre lo inusual. No probamos transacciones ni confirmamos saldos.',
+          says: '…no tenemos conocimiento de ninguna modificación importante que deba hacerse a los estados financieros adjuntos…',
+          note: 'Su contrato de préstamo indica el nivel. Las líneas de crédito grandes suelen pedir una auditoría.' },
+        investors: { name: 'Una auditoría', lvl: 'aud', a: 'reasonable', ask: 'Consultar sobre una auditoría',
+          do: 'Probamos transacciones, confirmamos saldos con bancos y clientes, y evaluamos los controles que afectan los estados.',
+          says: '…los estados financieros presentan razonablemente, en todos los aspectos materiales, la situación financiera de la Compañía…',
+          note: '¿Compra o vende una empresa? También hacemos due diligence de adquisiciones.' },
+        captive: { name: 'Una auditoría', lvl: 'aud', a: 'reasonable', ask: 'Consultar sobre una cautiva',
+          do: 'Auditamos los estados de la cautiva para su presentación anual, incluidas primas, inversiones y reservas.',
+          says: '…los estados financieros presentan razonablemente, en todos los aspectos materiales, la situación financiera de la Compañía…',
+          note: 'Las aseguradoras cautivas suelen presentar estados auditados ante su regulador cada año.' },
+        board: { name: 'Auditoría interna externalizada', lvl: '', a: 'apart', ask: 'Consultar sobre auditoría interna',
+          do: 'Probamos y documentamos sus controles internos, hacemos auditorías operativas e informamos a la junta.',
+          says: 'Hallazgos, su riesgo y la respuesta de la gerencia, escritos para su comité de auditoría.',
+          note: 'Puede funcionar todo el año junto a su auditoría externa.' },
+        us: { name: 'Una compilación', lvl: 'comp', a: 'none', ask: 'Consultar sobre una compilación',
+          do: 'Preparamos sus estados financieros a partir de sus registros, sin verificarlos. A menudo junto con la contabilidad mensual.',
+          says: '…no expresamos una opinión, una conclusión ni proporcionamos ningún tipo de seguridad sobre estos estados financieros.',
+          note: 'El servicio más ligero. Fácil de pasar a una revisión cuando un banco la pida.' }
+      }
+    }
+  };
+  const picker = document.getElementById('picker');
+  const result = document.getElementById('result');
+  let lang = 'en';
+  const $ = (id) => document.getElementById(id);
+  function render(animate) {
+    const t = T[lang];
+    const who = picker.querySelector('input[name=who]:checked').value;
+    const r = t.r[who];
+    picker.querySelectorAll('[data-t]').forEach((el) => { el.textContent = t[el.dataset.t]; });
+    $('r-name').textContent = r.name;
+    $('r-level').textContent = t.lv[r.a];
+    $('r-do').textContent = r.do;
+    $('r-says').textContent = r.says;
+    $('r-says').parentElement.previousElementSibling.textContent = r.a === 'apart' ? (lang === 'en' ? 'What you receive' : 'Qué recibe') : t.d_says;
+    $('r-note').textContent = r.note;
+    $('r-ask').textContent = r.ask;
+    $('r-ask').href = 'mailto:info@guernicacpa.com?subject=' + encodeURIComponent(r.ask);
+    picker.querySelectorAll('.levels span').forEach((s) => s.classList.toggle('on', s.dataset.l === r.lvl));
+    picker.closest('.hero') && document.documentElement.setAttribute('lang', 'en');
+    picker.setAttribute('lang', lang);
+    if (animate) { result.classList.remove('swap'); void result.offsetWidth; result.classList.add('swap'); }
+  }
+  picker.addEventListener('change', () => render(true));
+  picker.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => {
+    lang = b.dataset.lang;
+    picker.querySelectorAll('[data-lang]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    render(true);
+  }));
+  render(false);
+
+  // Pinned request list advances with the steps
+  const states = {
+    1: ['rec','rec','rec','req','req','req','req','req','req'],
+    2: ['tst','tst','tst','rec','rec','rec','rec','rec','req'],
+    3: ['tst','tst','tst','tst','tst','tst','tst','tst','tst']
+  };
+  const label = { req: 'Requested', rec: 'Received', tst: 'Tested' };
+  const chips = [...document.querySelectorAll('#pbc .chip')];
+  const count = $('pbc-count'), foot = $('pbc-foot');
+  function setStep(n) {
+    states[n].forEach((s, i) => { chips[i].dataset.s = s; chips[i].textContent = label[s]; });
+    const got = states[n].filter((s) => s !== 'req').length;
+    count.textContent = n === 3 ? 'Draft report sent' : got + ' of 9 received';
+    foot.textContent = n === 3 ? 'Every item tested. Management letter attached to the draft.' : 'Example list. Yours is written for your company.';
+    document.querySelectorAll('.step').forEach((s) => s.classList.toggle('is-active', s.dataset.step == n));
+  }
+  const steps = document.querySelectorAll('.step');
+  if ('IntersectionObserver' in window) {
+    const so = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) setStep(+e.target.dataset.step); }), { rootMargin: '-45% 0px -45% 0px' });
+    steps.forEach((s) => so.observe(s));
+    const ro = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('[data-rise]').forEach((el) => ro.observe(el));
+  } else {
+    document.querySelectorAll('[data-rise]').forEach((el) => el.classList.add('in'));
+  }
+})();
+</script>
+</body>
+</html>
